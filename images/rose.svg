@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" shape-rendering="crispEdges">
+  <!-- Leaves & Stem -->
+  <rect x="11" y="14" width="2" height="8" fill="#3a7d44"/>
+  <rect x="10" y="16" width="1" height="4" fill="#285930"/>
+  <rect x="8" y="16" width="3" height="2" fill="#58a363"/>
+  <rect x="7" y="17" width="1" height="2" fill="#3a7d44"/>
+  <rect x="13" y="18" width="3" height="2" fill="#58a363"/>
+  <rect x="16" y="19" width="1" height="2" fill="#3a7d44"/>
+  <rect x="10" y="21" width="4" height="2" fill="#3a7d44"/>
+  <!-- Calyx -->
+  <rect x="10" y="13" width="4" height="2" fill="#285930"/>
+  <!-- Rose Blossom Outline / Dark Shadow -->
+  <rect x="8" y="4" width="8" height="9" fill="#7a0c2e"/>
+  <rect x="7" y="5" width="10" height="7" fill="#7a0c2e"/>
+  <rect x="6" y="6" width="12" height="5" fill="#7a0c2e"/>
+  <!-- Medium Red Petals -->
+  <rect x="8" y="5" width="8" height="7" fill="#c9184a"/>
+  <rect x="7" y="6" width="10" height="5" fill="#c9184a"/>
+  <!-- Inner petals & highlights -->
+  <rect x="9" y="4" width="6" height="2" fill="#ff4d6d"/>
+  <rect x="8" y="6" width="3" height="3" fill="#ff4d6d"/>
+  <rect x="13" y="7" width="3" height="3" fill="#ff758f"/>
+  <rect x="10" y="7" width="2" height="2" fill="#590d22"/>
+  <rect x="10" y="9" width="4" height="2" fill="#ff4d6d"/>
+  <rect x="11" y="6" width="2" height="1" fill="#ff8fa3"/>
+  <!-- Highlight shine -->
+  <rect x="9" y="5" width="2" height="1" fill="#fff0f3"/>
+  <rect x="14" y="8" width="1" height="1" fill="#fff0f3"/>
+</svg>

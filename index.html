@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌸 Nei's Pixel World - Clouds, Roses & Love 💖</title>
+  <meta name="description" content="Website kenangan cantik pixel art bertema awan, bunga mawar, dan cinta khusus untuk Nei.">
+  
+  <!-- Favicon using pixel rose -->
+  <link rel="icon" type="image/svg+xml" href="images/rose.svg">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Sky Atmosphere & Pixel Clouds -->
+  <div class="sky-container"></div>
+  
+  <!-- Falling Petals & Hearts Particle Layer -->
+  <div id="particles-container"></div>
+
+  <!-- Floating Audio & Retro Controls -->
+  <div class="control-bar">
+    <button id="toggleBgmBtn" class="retro-icon-btn" title="Nyalakan / Matikan Musik 8-bit">
+      🎵 <span class="label">BGM: OFF</span>
+    </button>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-content">
+
+    <!-- ========================================================
+         HERO SECTION (Pixel RPG Dialogue Box)
+         ======================================================== -->
+    <header class="pixel-box hero-section">
+      <div class="pixel-roses-badge">
+        <img src="images/rose.svg" alt="Rose">
+        <span>SPECIAL EDITION • FOR NEI</span>
+        <img src="images/rose.svg" alt="Rose">
+      </div>
+
+      <h1 class="hero-title">🌸 NEI'S PIXEL WORLD 🌸</h1>
+      <p class="hero-subtitle">
+        ☁️ Selembut awan di langit, seindah bunga mawar merekah, dipenuhi sejuta rasa cinta 💕
+      </p>
+
+      <div class="hero-stats-bar">
+        <div class="stat-pill">
+          <img src="images/heart.svg" alt="Heart">
+          <span>Love Sent: <b id="loveCounter">999</b></span>
+        </div>
+        <div class="stat-pill">
+          <img src="images/rose.svg" alt="Rose">
+          <span>6 Mawar Abadi</span>
+        </div>
+        <div class="stat-pill">
+          <img src="images/cloud.svg" alt="Cloud">
+          <span>Langit Cerah Selalu</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 25px;">
+        <button id="sendLoveBtn" class="send-love-btn">
+          <img src="images/heart.svg" alt="Heart" width="16" height="16">
+          Kirim Love Buat Nei! 💖
+        </button>
+      </div>
+    </header>
+
+    <!-- ========================================================
+         PHOTO GALLERY (Pixel Polaroid Cards)
+         ======================================================== -->
+    <section id="gallerySection">
+      <div class="section-title-wrap">
+        <h2 class="section-title">
+          <img src="images/rose.svg" alt="Rose" width="24" height="24">
+          GALERI KENANGAN NEI
+          <img src="images/rose.svg" alt="Rose" width="24" height="24">
+        </h2>
+        <p class="section-subtitle">Potret terindah yang tersimpan manis dalam dunia pixel 📷✨</p>
+      </div>
+
+      <div class="gallery-grid">
+
+        <!-- Photo 1 -->
+        <article class="polaroid-card" data-idx="0">
+          <div class="card-tape"></div>
+          <div class="card-image-box">
+            <img src="images/photo_1.jpg" alt="Foto Nei 1" loading="lazy">
+            <span class="card-badge">#01 🌸</span>
+          </div>
+          <div class="card-info">
+            <span class="card-caption">Senyum Manis Nei</span>
+            <div class="card-actions">
+              <button class="like-btn" title="Suka foto ini">
+                ❤️ <span class="like-count">128</span>
+              </button>
+              <button class="view-btn" data-idx="0">Zoom 🔍</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Photo 2 -->
+        <article class="polaroid-card" data-idx="1">
+          <div class="card-tape"></div>
+          <div class="card-image-box">
+            <img src="images/photo_2.jpg" alt="Foto Nei 2" loading="lazy">
+            <span class="card-badge">#02 🌹</span>
+          </div>
+          <div class="card-info">
+            <span class="card-caption">Pesona Anggun</span>
+            <div class="card-actions">
+              <button class="like-btn" title="Suka foto ini">
+                ❤️ <span class="like-count">245</span>
+              </button>
+              <button class="view-btn" data-idx="1">Zoom 🔍</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Photo 3 -->
+        <article class="polaroid-card" data-idx="2">
+          <div class="card-tape"></div>
+          <div class="card-image-box">
+            <img src="images/photo_3.jpg" alt="Foto Nei 3" loading="lazy">
+            <span class="card-badge">#03 ✨</span>
+          </div>
+          <div class="card-info">
+            <span class="card-caption">Tatapan Menenangkan</span>
+            <div class="card-actions">
+              <button class="like-btn" title="Suka foto ini">
+                ❤️ <span class="like-count">310</span>
+              </button>
+              <button class="view-btn" data-idx="2">Zoom 🔍</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Photo 4 -->
+        <article class="polaroid-card" data-idx="3">
+          <div class="card-tape"></div>
+          <div class="card-image-box">
+            <img src="images/photo_4.jpg" alt="Foto Nei 4" loading="lazy">
+            <span class="card-badge">#04 ☁️</span>
+          </div>
+          <div class="card-info">
+            <span class="card-caption">Hangat & Tulus</span>
+            <div class="card-actions">
+              <button class="like-btn" title="Suka foto ini">
+                ❤️ <span class="like-count">194</span>
+              </button>
+              <button class="view-btn" data-idx="3">Zoom 🔍</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Photo 5 -->
+        <article class="polaroid-card" data-idx="4">
+          <div class="card-tape"></div>
+          <div class="card-image-box">
+            <img src="images/photo_5.jpg" alt="Foto Nei 5" loading="lazy">
+            <span class="card-badge">#05 💖</span>
+          </div>
+          <div class="card-info">
+            <span class="card-caption">Momen Berharga</span>
+            <div class="card-actions">
+              <button class="like-btn" title="Suka foto ini">
+                ❤️ <span class="like-count">278</span>
+              </button>
+              <button class="view-btn" data-idx="4">Zoom 🔍</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Photo 6 -->
+        <article class="polaroid-card" data-idx="5">
+          <div class="card-tape"></div>
+          <div class="card-image-box">
+            <img src="images/photo_6.jpg" alt="Foto Nei 6" loading="lazy">
+            <span class="card-badge">#06 ⭐</span>
+          </div>
+          <div class="card-info">
+            <span class="card-caption">Bidadari Tercantik</span>
+            <div class="card-actions">
+              <button class="like-btn" title="Suka foto ini">
+                ❤️ <span class="like-count">350</span>
+              </button>
+              <button class="view-btn" data-idx="5">Zoom 🔍</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         INTERACTIVE PIXEL ROSE GARDEN (TAMAN MAWAR)
+         ======================================================== -->
+    <section class="pixel-box-pink rose-garden-section">
+      <div class="pixel-box-header">
+        <span>🌹 TAMAN MAWAR AJAIB UNTUK NEI</span>
+        <div class="window-controls">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <div style="padding-top: 15px; text-align: center;">
+        <p style="font-weight: 700; color: #590d22; font-size: 1rem;">
+          Klik salah satu pot bunga untuk menyiram dan mekarkan bunga mawar khusus untukmu! 🌸💧
+        </p>
+
+        <div class="garden-grid">
+          <div class="garden-pot" data-flower="1">
+            <div class="pot-flower-icon">
+              <img src="images/rose.svg" alt="Rose">
+            </div>
+            <div class="pot-label">Mawar Merah</div>
+          </div>
+
+          <div class="garden-pot" data-flower="2">
+            <div class="pot-flower-icon">
+              <img src="images/rose.svg" alt="Rose">
+            </div>
+            <div class="pot-label">Mawar Pink</div>
+          </div>
+
+          <div class="garden-pot" data-flower="3">
+            <div class="pot-flower-icon">
+              <img src="images/rose.svg" alt="Rose">
+            </div>
+            <div class="pot-label">Mawar Manis</div>
+          </div>
+
+          <div class="garden-pot" data-flower="4">
+            <div class="pot-flower-icon">
+              <img src="images/rose.svg" alt="Rose">
+            </div>
+            <div class="pot-label">Mawar Cinta</div>
+          </div>
+
+          <div class="garden-pot" data-flower="5">
+            <div class="pot-flower-icon">
+              <img src="images/rose.svg" alt="Rose">
+            </div>
+            <div class="pot-label">Mawar Bintang</div>
+          </div>
+
+          <div class="garden-pot" data-flower="6">
+            <div class="pot-flower-icon">
+              <img src="images/rose.svg" alt="Rose">
+            </div>
+            <div class="pot-label">Mawar Surga</div>
+          </div>
+        </div>
+
+        <div id="gardenBanner" class="garden-message-banner">
+          ✨ Silakan klik pot mawar di atas untuk membaca pesan rahasia... ✨
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SWEET LETTER SECTION (Pesan Manis)
+         ======================================================== -->
+    <section class="pixel-box letter-section">
+      <div class="pixel-box-header">
+        <span>💌 SURAT CINTA DALAM PIXEL</span>
+        <div class="window-controls">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <div class="letter-content">
+        <p><b>Halo Nei yang paling cantik dan manis,</b> 🌸</p>
+        <p>
+          Halaman web bernuansa pixel art ini dibuat khusus untuk merangkum pesonamu yang selalu memikat. Dihiasi awan-awan putih yang berlayar tenang di langit pastel, bunga-bunga mawar yang merekah abadi, dan untaian cinta yang tak pernah usai.
+        </p>
+        <p>
+          Semoga setiap kali kamu membuka website ini, hatimu menjadi hangat dan senyum manis yang paling menawan itu selalu merekah di wajahmu. Terima kasih telah selalu menjadi cahaya terindah. 🌹✨
+        </p>
+        <div class="letter-sign">
+          With all my love & roses,<br>
+          <b>Always for you, Nei 💖</b>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         QR CODE & SHARING SECTION
+         ======================================================== -->
+    <section class="pixel-box qr-section">
+      <div class="pixel-box-header">
+        <span>📱 KODE QR WEBSITE NEI</span>
+        <div class="window-controls">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <div class="qr-container">
+        <!-- QR Card Frame -->
+        <div class="qr-card">
+          <div class="qr-image-wrapper">
+            <img src="images/qr_code.png" alt="QR Code Foto Nei">
+          </div>
+          <span class="qr-caption">SCAN DENGAN HP 📷</span>
+        </div>
+
+        <!-- QR Information & Action Buttons -->
+        <div class="qr-details">
+          <h3>Buka & Bagikan Langsung!</h3>
+          <p>
+            Scan kode QR di samping menggunakan kamera smartphone kamu untuk membuka website pixel cantik ini di mana pun dan kapan pun!
+          </p>
+          <div style="margin-bottom: 12px; font-family: var(--font-pixel); font-size: 10px; color: #800f2f; word-break: break-all;">
+            🌐 https://zakiyullah603-sys.github.io/foto-nei/
+          </div>
+          <div>
+            <button id="copyLinkBtn" class="copy-btn">
+              📋 Salin Link Web
+            </button>
+            <a href="images/qr_code.png" download="QR_Code_Nei.png" class="download-btn">
+              💾 Unduh Kode QR
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         FOOTER
+         ======================================================== -->
+    <footer>
+      <div>🌸 Made with Endless Love, Clouds & Pixel Roses for Nei 🌹</div>
+      <div style="font-size: 9px; opacity: 0.85;">Pixel Romance Collection • 2026</div>
+    </footer>
+
+  </main>
+
+  <!-- ========================================================
+       MODAL LIGHTBOX
+       ======================================================== -->
+  <div id="photoModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="pixel-box-header">
+        <span id="modalCaption">🌸 Foto Kenangan Nei</span>
+        <button id="closeModalBtn" class="close-modal-btn">✖ TUTUP</button>
+      </div>
+      <div class="modal-img-wrap">
+        <img id="modalImage" src="" alt="Enlarged Nei Photo">
+      </div>
+      <div class="modal-footer">
+        <p id="modalNote" style="font-size: 13px; font-weight: 600; color: #590d22; max-width: 65%;">
+          Momen manis Nei...
+        </p>
+        <div class="modal-nav">
+          <button id="prevPhotoBtn" class="modal-btn">◀ Prev</button>
+          <button id="nextPhotoBtn" class="modal-btn">Next ▶</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pixel Toast Notification -->
+  <div id="pixelToast" class="pixel-toast">Pesan terkirim! 🌸</div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
