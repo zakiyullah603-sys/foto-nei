@@ -113,8 +113,202 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --------------------------------------------------------
-  // 4. RETRO 8-BIT AUDIO SYNTHESIZER (WEB AUDIO API)
+  // 4. AUDIO PLAYER (WESTLIFE - I LAY MY LOVE ON YOU)
   // --------------------------------------------------------
+  const bgAudio = document.getElementById('bgAudio');
+  const leftReel = document.getElementById('leftReel');
+  const rightReel = document.getElementById('rightReel');
+  const dockReel = document.getElementById('dockReel');
+  const equalizerBars = document.getElementById('equalizerBars');
+  const mainPlayBtn = document.getElementById('mainPlayBtn');
+  const playIcon = document.getElementById('playIcon');
+  const playText = document.getElementById('playText');
+  const playerStatusText = document.getElementById('playerStatusText');
+  const timeDisplay = document.getElementById('timeDisplay');
+  const progressBarFill = document.getElementById('progressBarFill');
+  const progressBarContainer = document.getElementById('progressBarContainer');
+  const muteBtn = document.getElementById('muteBtn');
+  const muteIcon = document.getElementById('muteIcon');
+  const dockPlayBtn = document.getElementById('dockPlayBtn');
+  const dockMuteBtn = document.getElementById('dockMuteBtn');
+  const dockStatus = document.getElementById('dockStatus');
+  const topAudioBtn = document.getElementById('toggleAudioBtn');
+  const topAudioLabel = document.getElementById('topAudioLabel');
+  const musicPrompt = document.getElementById('musicPrompt');
+
+  function formatTime(sec) {
+    if (isNaN(sec) || sec < 0) return '0:00';
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
+  }
+
+  function updatePlayState(isPlaying) {
+    if (isPlaying) {
+      if (leftReel) leftReel.classList.add('spinning');
+      if (rightReel) rightReel.classList.add('spinning');
+      if (dockReel) dockReel.classList.add('spinning');
+      if (equalizerBars) equalizerBars.classList.add('playing');
+
+      if (playIcon) playIcon.textContent = '⏸';
+      if (playText) playText.textContent = 'PAUSE';
+      if (dockPlayBtn) dockPlayBtn.textContent = '⏸';
+      if (playerStatusText) {
+        playerStatusText.textContent = '▶ PLAYING';
+        playerStatusText.classList.add('playing');
+      }
+      if (dockStatus) dockStatus.textContent = 'Memutar: Westlife - I Lay My Love on You 💖';
+      if (topAudioLabel) topAudioLabel.textContent = 'Musik: ON';
+      if (topAudioBtn) topAudioBtn.style.background = '#ffd166';
+    } else {
+      if (leftReel) leftReel.classList.remove('spinning');
+      if (rightReel) rightReel.classList.remove('spinning');
+      if (dockReel) dockReel.classList.remove('spinning');
+      if (equalizerBars) equalizerBars.classList.remove('playing');
+
+      if (playIcon) playIcon.textContent = '▶';
+      if (playText) playText.textContent = 'PLAY';
+      if (dockPlayBtn) dockPlayBtn.textContent = '▶';
+      if (playerStatusText) {
+        playerStatusText.textContent = '⏸ PAUSED';
+        playerStatusText.classList.remove('playing');
+      }
+      if (dockStatus) dockStatus.textContent = 'Lagu dijeda ⏸';
+      if (topAudioLabel) topAudioLabel.textContent = 'Musik: OFF';
+      if (topAudioBtn) topAudioBtn.style.background = '#ffffff';
+    }
+  }
+
+  function toggleAudio() {
+    if (!bgAudio) return;
+    if (bgAudio.paused) {
+      bgAudio.play().then(() => {
+        updatePlayState(true);
+      }).catch(err => {
+        console.warn('Playback error:', err);
+      });
+    } else {
+      bgAudio.pause();
+      updatePlayState(false);
+    }
+  }
+
+  function toggleMute() {
+    if (!bgAudio) return;
+    bgAudio.muted = !bgAudio.muted;
+    const isMuted = bgAudio.muted;
+    if (muteIcon) muteIcon.textContent = isMuted ? '🔇' : '🔊';
+    if (dockMuteBtn) dockMuteBtn.textContent = isMuted ? '🔇' : '🔊';
+    showToast(isMuted ? 'Suara dinonaktifkan 🔇' : 'Suara aktif 🔊');
+  }
+
+  // Audio Event Listeners
+  if (bgAudio) {
+    bgAudio.addEventListener('play', () => updatePlayState(true));
+    bgAudio.addEventListener('pause', () => updatePlayState(false));
+
+    bgAudio.addEventListener('timeupdate', () => {
+      if (!bgAudio.duration) return;
+      const progress = (bgAudio.currentTime / bgAudio.duration) * 100;
+      if (progressBarFill) progressBarFill.style.width = `${progress}%`;
+      if (timeDisplay) {
+        timeDisplay.textContent = `${formatTime(bgAudio.currentTime)} / ${formatTime(bgAudio.duration)}`;
+      }
+    });
+
+    bgAudio.addEventListener('loadedmetadata', () => {
+      if (timeDisplay) {
+        timeDisplay.textContent = `0:00 / ${formatTime(bgAudio.duration)}`;
+      }
+    });
+  }
+
+  // Progress bar scrubbing
+  if (progressBarContainer && bgAudio) {
+    progressBarContainer.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const rect = progressBarContainer.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const pct = Math.max(0, Math.min(1, clickX / rect.width));
+      if (bgAudio.duration) {
+        bgAudio.currentTime = pct * bgAudio.duration;
+      }
+    });
+  }
+
+  // Button Listeners
+  if (mainPlayBtn) {
+    mainPlayBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleAudio();
+    });
+  }
+
+  if (dockPlayBtn) {
+    dockPlayBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleAudio();
+    });
+  }
+
+  if (topAudioBtn) {
+    topAudioBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleAudio();
+    });
+  }
+
+  if (muteBtn) {
+    muteBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMute();
+    });
+  }
+
+  if (dockMuteBtn) {
+    dockMuteBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMute();
+    });
+  }
+
+  // First Interaction Autoplay Trigger
+  let hasInteracted = false;
+  function dismissPrompt() {
+    if (musicPrompt) {
+      musicPrompt.classList.add('dismissed');
+      setTimeout(() => {
+        if (musicPrompt.parentNode) musicPrompt.parentNode.removeChild(musicPrompt);
+      }, 500);
+    }
+  }
+
+  function handleFirstUserClick(e) {
+    if (hasInteracted) return;
+    hasInteracted = true;
+    dismissPrompt();
+    if (bgAudio && bgAudio.paused) {
+      bgAudio.play().then(() => {
+        updatePlayState(true);
+        showToast('🎶 Memutar lagu: Westlife - I Lay My Love on You 💕');
+      }).catch(err => {
+        console.log('Autoplay waiting for direct button click:', err);
+      });
+    }
+  }
+
+  // Attach global first interaction listener
+  document.addEventListener('click', handleFirstUserClick, { once: true });
+  document.addEventListener('touchstart', handleFirstUserClick, { once: true });
+
+  if (musicPrompt) {
+    musicPrompt.addEventListener('click', (e) => {
+      e.stopPropagation();
+      handleFirstUserClick();
+    });
+  }
+
+  // Fallback SFX for buttons
   function initAudio() {
     if (!audioCtx) {
       const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -125,100 +319,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Play a retro blip/chime SFX
-  function playTone(freq, duration, type = 'square', gainVal = 0.08) {
+  function playTone(freq, duration, type = 'square', gainVal = 0.05) {
     if (!sfxEnabled) return;
     try {
       initAudio();
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
-
       osc.type = type;
       osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
       gain.gain.setValueAtTime(gainVal, audioCtx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-
       osc.connect(gain);
       gain.connect(audioCtx.destination);
-
       osc.start();
       osc.stop(audioCtx.currentTime + duration);
     } catch (e) {
-      console.warn('Audio play error:', e);
+      // Ignore SFX error
     }
   }
 
   function playSuccessSfx() {
-    playTone(523.25, 0.1, 'triangle', 0.1); // C5
-    setTimeout(() => playTone(659.25, 0.1, 'triangle', 0.1), 80); // E5
-    setTimeout(() => playTone(783.99, 0.18, 'triangle', 0.12), 160); // G5
-    setTimeout(() => playTone(1046.50, 0.25, 'triangle', 0.14), 240); // C6
+    playTone(523.25, 0.08, 'triangle', 0.06);
+    setTimeout(() => playTone(659.25, 0.08, 'triangle', 0.06), 70);
+    setTimeout(() => playTone(783.99, 0.12, 'triangle', 0.08), 140);
   }
 
   function playHeartSfx() {
-    playTone(659.25, 0.08, 'square', 0.05); // E5
-    setTimeout(() => playTone(880, 0.15, 'square', 0.07), 60); // A5
-  }
-
-  // Romantic 8-Bit Chiptune Melody (Nostalgic Love Theme)
-  const melodyNotes = [
-    // Note, Duration(s)
-    { f: 523.25, d: 0.3 }, // C5
-    { f: 659.25, d: 0.3 }, // E5
-    { f: 783.99, d: 0.4 }, // G5
-    { f: 659.25, d: 0.3 }, // E5
-    { f: 880.00, d: 0.5 }, // A5
-    { f: 783.99, d: 0.5 }, // G5
-    { f: 698.46, d: 0.4 }, // F5
-    { f: 659.25, d: 0.4 }, // E5
-    { f: 587.33, d: 0.6 }, // D5
-    { f: 523.25, d: 0.3 }, // C5
-    { f: 587.33, d: 0.3 }, // D5
-    { f: 659.25, d: 0.5 }, // E5
-    { f: 523.25, d: 0.7 }  // C5
-  ];
-
-  let currentNoteIdx = 0;
-  function startBgm() {
-    initAudio();
-    bgmPlaying = true;
-    const bgmBtn = document.getElementById('toggleBgmBtn');
-    if (bgmBtn) {
-      bgmBtn.innerHTML = '🎵 BGM: ON';
-      bgmBtn.style.background = '#ffd166';
-    }
-
-    function step() {
-      if (!bgmPlaying) return;
-      const note = melodyNotes[currentNoteIdx];
-      playTone(note.f, note.d * 0.9, 'triangle', 0.05);
-      currentNoteIdx = (currentNoteIdx + 1) % melodyNotes.length;
-      bgmInterval = setTimeout(step, note.d * 1000);
-    }
-    step();
-  }
-
-  function stopBgm() {
-    bgmPlaying = false;
-    clearTimeout(bgmInterval);
-    const bgmBtn = document.getElementById('toggleBgmBtn');
-    if (bgmBtn) {
-      bgmBtn.innerHTML = '🎵 BGM: OFF';
-      bgmBtn.style.background = '#ffffff';
-    }
-  }
-
-  const toggleBgmBtn = document.getElementById('toggleBgmBtn');
-  if (toggleBgmBtn) {
-    toggleBgmBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (bgmPlaying) {
-        stopBgm();
-      } else {
-        startBgm();
-      }
-    });
+    playTone(659.25, 0.06, 'square', 0.04);
+    setTimeout(() => playTone(880, 0.1, 'square', 0.05), 50);
   }
 
   // --------------------------------------------------------

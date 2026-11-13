@@ -22,8 +22,8 @@
 
   <!-- Floating Audio & Retro Controls -->
   <div class="control-bar">
-    <button id="toggleBgmBtn" class="retro-icon-btn" title="Nyalakan / Matikan Musik 8-bit">
-      🎵 <span class="label">BGM: OFF</span>
+    <button id="toggleAudioBtn" class="retro-icon-btn" title="Nyalakan / Matikan Lagu">
+      🎵 <span class="label" id="topAudioLabel">Musik: OFF</span>
     </button>
   </div>
 
@@ -67,6 +67,93 @@
         </button>
       </div>
     </header>
+
+    <!-- ========================================================
+         PIXEL CASSETTE MUSIC PLAYER (Westlife - I Lay My Love on You)
+         ======================================================== -->
+    <section class="pixel-box-pink cassette-section">
+      <div class="pixel-box-header">
+        <span>📻 RETRO PIXEL CASSETTE PLAYER</span>
+        <div class="window-controls">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <div class="cassette-container">
+        <!-- Cassette Tape Graphic -->
+        <div class="cassette-tape">
+          <div class="cassette-screw top-left"></div>
+          <div class="cassette-screw top-right"></div>
+          <div class="cassette-screw bottom-left"></div>
+          <div class="cassette-screw bottom-right"></div>
+
+          <div class="cassette-sticker">
+            <div class="sticker-top">
+              <span>🌸 SIDE A • SPECIAL FOR NEI</span>
+              <span class="tape-type">STEREO Hi-Fi</span>
+            </div>
+
+            <!-- Tape Window with Reels -->
+            <div class="tape-window">
+              <div class="tape-reel left-reel" id="leftReel">
+                <div class="reel-teeth"></div>
+              </div>
+              <div class="tape-middle-bridge">
+                <div class="equalizer-bars" id="equalizerBars">
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                </div>
+              </div>
+              <div class="tape-reel right-reel" id="rightReel">
+                <div class="reel-teeth"></div>
+              </div>
+            </div>
+
+            <div class="sticker-bottom">
+              <div class="song-marquee-wrap">
+                <div class="song-marquee-text" id="songTitleDisplay">
+                  🎶 Westlife - I Lay My Love on You 💖 Lagu Spesial Untuk Nei 🌹
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Player Controls & Timeline -->
+        <div class="player-controls-wrap">
+          <div class="player-status-row">
+            <span class="status-pill" id="playerStatusText">⏸ PAUSED</span>
+            <span class="time-display" id="timeDisplay">0:00 / 0:00</span>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="progress-bar-container" id="progressBarContainer">
+            <div class="progress-bar-fill" id="progressBarFill"></div>
+            <div class="progress-bar-handle" id="progressBarHandle"></div>
+          </div>
+
+          <!-- Buttons Row -->
+          <div class="player-buttons-row">
+            <button id="mainPlayBtn" class="retro-btn play-btn" title="Play / Pause Lagu">
+              <span id="playIcon">▶</span> <span id="playText">PLAY</span>
+            </button>
+            <button id="muteBtn" class="retro-btn icon-only-btn" title="Mute / Unmute">
+              <span id="muteIcon">🔊</span>
+            </button>
+            <a href="https://youtu.be/V_T277c9klU" target="_blank" rel="noopener noreferrer" class="retro-btn yt-link-btn" title="Buka di YouTube">
+              ▶ YouTube ↗
+            </a>
+          </div>
+
+          <p class="lyrics-quote">
+            “I lay my love on you, it's all I wanna do, every time I breathe I feel brand new...” 💕
+          </p>
+        </div>
+      </div>
+    </section>
 
     <!-- ========================================================
          PHOTO GALLERY (Pixel Polaroid Cards)
@@ -360,6 +447,31 @@
       </div>
     </div>
   </div>
+
+  <!-- Floating Bottom Music Mini-Dock -->
+  <aside class="floating-music-dock" id="musicDock">
+    <div class="dock-left">
+      <div class="mini-reel" id="dockReel"></div>
+      <div class="dock-info">
+        <div class="dock-title">Westlife - I Lay My Love on You</div>
+        <div class="dock-status" id="dockStatus">Ketuk untuk memutar 🎵</div>
+      </div>
+    </div>
+    <div class="dock-right">
+      <button id="dockPlayBtn" class="dock-btn" title="Play / Pause">▶</button>
+      <button id="dockMuteBtn" class="dock-btn" title="Mute / Unmute">🔊</button>
+    </div>
+  </aside>
+
+  <!-- Autoplay Click Prompt Banner -->
+  <div id="musicPrompt" class="music-start-prompt">
+    <span>🎵 Klik di mana saja untuk memutar lagu: <b>Westlife - I Lay My Love on You</b> 💕</span>
+  </div>
+
+  <!-- Audio Element -->
+  <audio id="bgAudio" loop preload="auto">
+    <source src="audio/song.m4a" type="audio/mp4">
+  </audio>
 
   <!-- Pixel Toast Notification -->
   <div id="pixelToast" class="pixel-toast">Pesan terkirim! 🌸</div>
